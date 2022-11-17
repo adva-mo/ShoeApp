@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import ShoesPage from "./pages/ShoesPage";
 import AddShoe from "./components/AddShoe";
+import ShoeCard from "./components/ShoeCard";
 import axios from "axios";
 
 import "./App.css";
@@ -38,17 +39,20 @@ function App() {
       <NavBar />
       <main>
         <Routes>
-          <Route path="/" element={<Navigate replace to="/HomePage" />} />
+          {/* <Route path="/" element={<Navigate replace to="/HomePage" />} /> */}
           {/* if the page doesnt exist-redirect to the home page */}
-          <Route path="/*" element={<Navigate replace to="/HomePage" />} />
+          {/* <Route path="/*" element={<Navigate replace to="/HomePage" />} /> */}
           <Route path="/HomePage" element={<HomePage />} />
-          <Route path="/ShoesPage" element={<ShoesPage shoes={shoes} />} />
+          <Route path="/Shoespage" element={<ShoesPage shoes={shoes} />} />
           <Route
             path="/addShoe"
             element={<AddShoe dispatchShoes={dispatchShoes} />}
           />
 
-          {/* <Route path="/products/:productId" element={<ProductDetail />} /> */}
+          <Route
+            path="/Shoespage/:shoeId"
+            element={<ShoeCard shoes={shoes} />}
+          />
         </Routes>
       </main>
     </div>

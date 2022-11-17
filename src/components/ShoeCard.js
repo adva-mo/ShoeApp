@@ -1,15 +1,12 @@
 import React from "react";
-import "./ShoeCrad.css";
+import { useParams } from "react-router-dom";
 
-function ShoeCard({ model, brand, color, price, img }) {
+function ShoeCard() {
+  let shoeID = useParams();
   return (
-    <div className="shoe-card">
+    <div>
       ShoeCard
-      <p>Model: {model}</p>
-      <p>Brand: {brand}</p>
-      <p>Color: {color}</p>
-      <p>Price: {price}</p>
-      <img src={`${img}`} alt="shoe-img" />
+      <p>{console.log(shoeID)}</p>
     </div>
   );
 }

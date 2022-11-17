@@ -1,18 +1,19 @@
 import React from "react";
-import ShoeCard from "../components/ShoeCard";
+import ShoePrev from "../components/ShoePrev";
 import { v4 as uuid } from "uuid";
 
 function ShoesPage({ shoes }) {
-  console.log(shoes);
+  // console.log(shoes);
   return (
     <div>
       ShoesPage
       <div className="shoes-container">
         {shoes.map((shoe) => {
           return (
-            <ShoeCard
+            <ShoePrev
               key={uuid()}
               {...shoe}
+              // state={state}
               // shoes={shoes}
               // dispatchShoes={dispatchShoes}
             />
