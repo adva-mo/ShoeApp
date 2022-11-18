@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Spinner from "../components/Spinner/Spinner";
 import axios from "axios";
+import { getGreeting, getTime } from "../utils/utils.js";
 
 function HomePage({ dispatchShoes, shoes, isLoading, setIsLoading }) {
   // const [isLoading, setIsLoading] = useState(!shoes);
@@ -30,7 +31,8 @@ function HomePage({ dispatchShoes, shoes, isLoading, setIsLoading }) {
         <Spinner />
       ) : (
         <div>
-          hello mananger!
+          <h1>{getGreeting()}, mananger!</h1>
+          <h3>the time: {getTime()}</h3>
           <p>you have {shoes.length} shoes in stock!</p>
         </div>
       )}
