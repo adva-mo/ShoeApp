@@ -4,8 +4,6 @@ import axios from "axios";
 import { getGreeting, getTime } from "../utils/utils.js";
 
 function HomePage({ dispatchShoes, shoes, isLoading, setIsLoading }) {
-  // const [isLoading, setIsLoading] = useState(!shoes);
-
   useEffect(() => {
     if (!shoes) getShoes();
   }, []);

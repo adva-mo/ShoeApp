@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Spinner from "./Spinner/Spinner";
+import { isFormValid } from "../utils/utils.js";
 
 function AddShoe({ dispatchShoes, isLoading, setIsLoading }) {
   const [posted, setPosted] = useState(false);
@@ -9,9 +10,14 @@ function AddShoe({ dispatchShoes, isLoading, setIsLoading }) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const newShoe = Object.fromEntries(formData);
-    postNewShoe(newShoe);
-    console.log(newShoe);
-    e.target.reset();
+    if (isFormValid(newShoe)) {
+      console.log("valid");
+      postNewShoe(newShoe);
+      // console.log(newShoe);
+      e.target.reset();
+    } else {
+      console.log("not valid");
+    }
   };
 
   const postNewShoe = async (obj) => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { getShoeById } from "../utils/utils";
+import { getShoeById, isFormValid } from "../utils/utils";
 import axios from "axios";
 import Spinner from "./Spinner/Spinner";
 
@@ -12,7 +12,6 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
 
   useEffect(() => {
     setCurrentShoe(getShoeById(shoes, params.shoeID));
-    // return setCurrentShoe(null);
   }, []);
 
   const handleSubmit = (e) => {
@@ -32,9 +31,6 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
         playload: id,
       });
       setCurrentShoe((prev) => {
-        // setTimeout(() => {
-        //   console.log("navigate to shoes");
-        // }, 3000);
         return null;
       });
       setIsLoading((prev) => !prev);
@@ -47,6 +43,7 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
     if (isLoading) return;
     e.preventDefault();
     if (isEditable) {
+      if (newPrice.current.value <= 0) return; //user didnt entered price
       putShoe(params.shoeID, { price: newPrice.current.value });
       setIsEditable((prev) => !prev);
     } else setIsEditable((prev) => !prev);

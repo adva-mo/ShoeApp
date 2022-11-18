@@ -7,7 +7,6 @@ import NavBar from "./components/NavBar";
 import ShoesPage from "./pages/ShoesPage";
 import AddShoe from "./components/AddShoe";
 import ShoeCard from "./components/ShoeCard";
-import axios from "axios";
 
 import "./App.css";
 
