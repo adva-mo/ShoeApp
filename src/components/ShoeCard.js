@@ -12,6 +12,7 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
 
   useEffect(() => {
     setCurrentShoe(getShoeById(shoes, params.shoeID));
+    // return setCurrentShoe(null);
   }, []);
 
   const handleSubmit = (e) => {
@@ -19,6 +20,7 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
   };
 
   async function handleDelete(id) {
+    if (isLoading) return;
     setIsLoading((prev) => !prev);
     try {
       const response = await axios.delete(
@@ -42,6 +44,7 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
   }
 
   const handleEditMember = (e) => {
+    if (isLoading) return;
     e.preventDefault();
     if (isEditable) {
       putShoe(params.shoeID, { price: newPrice.current.value });
@@ -96,7 +99,7 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
           </form>
         </div>
       ) : (
-        <p>shoe deleted successfully!</p>
+        <p>shoe deleted</p>
       )}
       {currentShoe && (
         <button onClick={() => handleDelete(params.shoeID)}>delete shoe</button>
