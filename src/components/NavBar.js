@@ -1,10 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import "./NavBar.css";
 
 function NavBar() {
   return (
-    <div>
-      <ul>
+    <div className="nav-bar">
+      <ul className="flex-row">
         <li>
           <NavLink
             className={(navData) => (navData.isActive ? "active" : "")}

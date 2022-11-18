@@ -1,3 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap");
+* {
+  --primary-purple: #674ea7;
+  --light-purple: #8e7cc3;
+  --white: #f3f6f4;
+  --blue: #0b5394;
+  --pink: #a64d79;
+}
+body {
+  background: url("../public/shoestore-bg.jpg") no-repeat center center/cover;
+  color: var(--white);
+  background-color: rgba(255, 255, 255, 0.5);
+  font-family: "Open Sans", sans-serif;
+}
+.flex-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .shoes-container {
   display: flex;
   flex-wrap: wrap;
