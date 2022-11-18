@@ -51,7 +51,7 @@ function App() {
 
           <Route
             path="/Shoespage/:shoeID"
-            element={<ShoeCard shoes={shoes} />}
+            element={<ShoeCard shoes={shoes} dispatchShoes={dispatchShoes} />}
           />
         </Routes>
       </main>

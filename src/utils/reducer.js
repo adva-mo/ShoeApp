@@ -4,8 +4,8 @@ export const shoesReducer = (state, action) => {
   switch (action.type) {
     case "FETCHED":
       return [...action.playload];
-    // case "DELETE-MEMBER":
-    //   return deleteMember(action.playload, state);
+    case "DELETE-SHOE":
+      return deleteShoe(action.playload, state);
     case "ADD-SHOE":
       return addShoe(action.playload, state);
     // case "EDIT-MEMBER":
@@ -15,7 +15,7 @@ export const shoesReducer = (state, action) => {
   }
 };
 
-export const deleteMember = (id, state) => {
+export const deleteShoe = (id, state) => {
   // console.log(state);
   // console.log("in delete func, id: " + id);
   return state.filter((member) => {
