@@ -39,7 +39,7 @@ function App() {
       <NavBar />
       <main>
         <Routes>
-          {/* <Route path="/" element={<Navigate replace to="/HomePage" />} /> */}
+          <Route path="/" element={<Navigate replace to="/HomePage" />} />
           {/* if the page doesnt exist-redirect to the home page */}
           {/* <Route path="/*" element={<Navigate replace to="/HomePage" />} /> */}
           <Route path="/HomePage" element={<HomePage />} />
@@ -50,7 +50,7 @@ function App() {
           />
 
           <Route
-            path="/Shoespage/:shoeId"
+            path="/Shoespage/:shoeID"
             element={<ShoeCard shoes={shoes} />}
           />
         </Routes>
