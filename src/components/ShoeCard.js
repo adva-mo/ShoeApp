@@ -2,19 +2,24 @@ import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { getShoeById } from "../utils/utils";
 import axios from "axios";
+import Spinner from "./Spinner/Spinner";
 
-function ShoeCard({ shoes, dispatchShoes }) {
+function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
   const [isEditable, setIsEditable] = useState(false);
+  const [currentShoe, setCurrentShoe] = useState(null);
   const newPrice = useRef("");
   let params = useParams();
-  const [currentShoe, setCurrentShoe] = useState(null);
 
   useEffect(() => {
     setCurrentShoe(getShoeById(shoes, params.shoeID));
   }, []);
 
+  const handleSubmit = (e) => {
+    e && e.preventDefault();
+  };
+
   async function handleDelete(id) {
-    console.log(id);
+    setIsLoading((prev) => !prev);
     try {
       const response = await axios.delete(
         `https://6376932781a568fc2502553e.mockapi.io/shoes/${id}`
@@ -25,54 +30,49 @@ function ShoeCard({ shoes, dispatchShoes }) {
         playload: id,
       });
       setCurrentShoe((prev) => {
-        setTimeout(() => {
-          console.log("navigate to shoes");
-        }, 3000);
+        // setTimeout(() => {
+        //   console.log("navigate to shoes");
+        // }, 3000);
+        return null;
       });
+      setIsLoading((prev) => !prev);
     } catch (e) {
       console.log(e);
     }
   }
 
-  const handleSubmit = (e) => {
-    e && e.preventDefault();
-  };
   const handleEditMember = (e) => {
     e.preventDefault();
     if (isEditable) {
-      putShoe(params.shoeID, { price: newPrice.current.value }); //!
+      putShoe(params.shoeID, { price: newPrice.current.value });
       setIsEditable((prev) => !prev);
     } else setIsEditable((prev) => !prev);
   };
 
   const putShoe = async (id, memberData) => {
-    console.log("put");
-    // console.log(id);
-    // console.log(memberData);
+    setIsLoading((prev) => !prev);
     try {
       const response = await axios.put(
         `https://6376932781a568fc2502553e.mockapi.io/shoes/${id}`,
         memberData
       );
-
-      console.log(response);
       if (!response.data) throw new Error("errrrror");
       await dispatchShoes({
         type: "EDIT-SHOE",
         playload: { price: memberData.price, id: id },
       });
+      setIsLoading((prev) => !prev);
       console.log("shoe updated");
-    } catch {
-      console.log("e");
+    } catch (e) {
+      console.log(e);
     }
   };
 
   return (
     <div>
-      ShoeCard
+      {isLoading && <Spinner />}
       {currentShoe ? (
         <div>
-          <p>here is the shoe! {params.shoeID}</p>
           <form onSubmit={handleSubmit} className="shoe-card">
             <h3>{currentShoe.model}</h3>
             <p>brand: {currentShoe.brand}</p>
@@ -96,9 +96,11 @@ function ShoeCard({ shoes, dispatchShoes }) {
           </form>
         </div>
       ) : (
-        <p>show deleted success!</p>
+        <p>shoe deleted successfully!</p>
       )}
-      <button onClick={() => handleDelete(params.shoeID)}>delete shoe</button>
+      {currentShoe && (
+        <button onClick={() => handleDelete(params.shoeID)}>delete shoe</button>
+      )}
     </div>
   );
 }

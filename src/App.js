@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { shoesReducer } from "./utils/reducer";
 
@@ -13,26 +13,7 @@ import "./App.css";
 
 function App() {
   const [shoes, dispatchShoes] = useReducer(shoesReducer, null);
-
-  useEffect(() => {
-    getShoes();
-  }, []);
-
-  const getShoes = async () => {
-    try {
-      const response = await axios.get(
-        "https://6376932781a568fc2502553e.mockapi.io/shoes"
-      );
-      if (response)
-        dispatchShoes({
-          type: "FETCHED",
-          playload: [...response.data],
-        });
-      // setIsLoading((PREV) => !PREV);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const [isLoading, setIsLoading] = useState(!shoes);
 
   return (
     <div>
@@ -40,18 +21,39 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Navigate replace to="/HomePage" />} />
-          {/* if the page doesnt exist-redirect to the home page */}
-          {/* <Route path="/*" element={<Navigate replace to="/HomePage" />} /> */}
-          <Route path="/HomePage" element={<HomePage />} />
+          <Route path="/*" element={<Navigate replace to="/HomePage" />} />
           <Route path="/Shoespage" element={<ShoesPage shoes={shoes} />} />
           <Route
-            path="/addShoe"
-            element={<AddShoe dispatchShoes={dispatchShoes} />}
+            path="/HomePage"
+            element={
+              <HomePage
+                dispatchShoes={dispatchShoes}
+                shoes={shoes}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
+            }
           />
-
+          <Route
+            path="/addShoe"
+            element={
+              <AddShoe
+                dispatchShoes={dispatchShoes}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
+            }
+          />
           <Route
             path="/Shoespage/:shoeID"
-            element={<ShoeCard shoes={shoes} dispatchShoes={dispatchShoes} />}
+            element={
+              <ShoeCard
+                shoes={shoes}
+                dispatchShoes={dispatchShoes}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
+            }
           />
         </Routes>
       </main>

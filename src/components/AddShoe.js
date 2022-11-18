@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import Spinner from "./Spinner/Spinner";
 
-function AddShoe({ dispatchShoes }) {
+function AddShoe({ dispatchShoes, isLoading, setIsLoading }) {
+  const [posted, setPosted] = useState(false);
+
   const submitHandler = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -12,6 +15,7 @@ function AddShoe({ dispatchShoes }) {
   };
 
   const postNewShoe = async (obj) => {
+    setIsLoading((prev) => !prev);
     try {
       const result = await axios.post(
         "https://6376932781a568fc2502553e.mockapi.io/shoes",
@@ -23,6 +27,8 @@ function AddShoe({ dispatchShoes }) {
         type: "ADD-SHOE",
         playload: obj,
       });
+      setIsLoading((prev) => !prev);
+      setPosted((prev) => !prev);
     } catch (e) {
       console.log(e);
     }
@@ -59,6 +65,13 @@ function AddShoe({ dispatchShoes }) {
             <button>add</button>
           </fieldset>
         </form>
+        {isLoading && <Spinner />}
+        {posted && (
+          // setTimeout(() => {
+          //   <p>added successfully</p>;
+          // }, 2000)
+          <p>SUCCESS</p>
+        )}
       </div>
     </div>
   );
