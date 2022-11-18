@@ -8,8 +8,8 @@ export const shoesReducer = (state, action) => {
       return deleteShoe(action.playload, state);
     case "ADD-SHOE":
       return addShoe(action.playload, state);
-    // case "EDIT-MEMBER":
-    //   return editMember(action.playload, state);
+    case "EDIT-SHOE":
+      return editShoe(action.playload, state);
     default:
       return state;
   }
@@ -28,14 +28,17 @@ export const addShoe = (obj, state) => {
   return [...state, obj];
 };
 
-// export const editMember = ({ id, memberData }, state) => {
-//   return state.map((m) => {
-//     if (m.id === id) {
-//       return { ...m, ...memberData };
-//     } else {
-//       return m;
-//     }
-//   });
+export const editShoe = ({ price, id }, state) => {
+  // console.log(id);
+  // console.log(price);
+  return state.map((m) => {
+    if (m.id === id) {
+      return { ...m, price: price };
+    } else {
+      return m;
+    }
+  });
+};
 // //   console.log(id);
 // //   console.log("edit function");
 // //   console.log(state.find((m) => m.id === id));
