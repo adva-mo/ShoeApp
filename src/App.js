@@ -5,8 +5,8 @@ import { shoesReducer } from "./utils/reducer";
 import HomePage from "./pages/HomePage";
 import NavBar from "./components/NavBar";
 import ShoesPage from "./pages/ShoesPage";
-import AddShoe from "./components/AddShoe";
-import ShoeCard from "./components/ShoeCard";
+import AddShoe from "../src/pages/AddShoe";
+import ShoeCard from "../src/pages/ShoeCard";
 
 import "./App.css";
 import Spinner from "./components/Spinner/Spinner";

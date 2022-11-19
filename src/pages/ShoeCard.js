@@ -2,8 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getShoeById } from "../utils/utils";
 import axios from "axios";
-import Spinner from "./Spinner/Spinner";
-import Error from "./Error";
+import Spinner from "../components/Spinner/Spinner";
 import "./ShoeCard.css";
 
 function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
