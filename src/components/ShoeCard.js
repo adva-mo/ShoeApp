@@ -15,8 +15,9 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setCurrentShoe(getShoeById(shoes, params.shoeID));
-  }, [shoes, params.shoeID]);
+    if (!shoes) navigate("/");
+    else setCurrentShoe(getShoeById(shoes, params.shoeID));
+  }, [shoes, params.shoeID, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +39,7 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
       setIsLoading((prev) => !prev);
       setTimeout(() => {
         navigate("/");
-      }, 3000);
+      }, 2000);
     } catch (e) {
       setIsLoading((prev) => !prev);
       console.log(e);
@@ -110,7 +111,7 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
                 name="price"
                 type="text"
                 readOnly={!isEditable}
-                placeholder={currentShoe.price}
+                defaultValue={currentShoe.price}
                 ref={newPrice}
               />
               <span className="bold">$</span>
