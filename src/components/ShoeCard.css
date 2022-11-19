@@ -1,7 +1,18 @@
 .shoe-card {
-  margin: 2rem 5rem;
+  /* margin: 2rem 5rem; */
   text-align: center;
   line-height: 1.5rem;
+  background-color: var(--white);
+  border-radius: 5px;
+  /* padding: 0.5rem; */
+  /* margin-left: auto; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  margin-top: 3rem;
+  line-height: 2rem;
+  width: fit-content;
+  display: inline-block;
+  color: var(--blue);
 }
 .shoe-card img {
   width: 15rem;

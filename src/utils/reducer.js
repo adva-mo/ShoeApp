@@ -20,7 +20,6 @@ export const deleteShoe = (id, state) => {
 };
 
 export const addShoe = (obj, state) => {
-  console.log("member added");
   return [...state, obj];
 };
 

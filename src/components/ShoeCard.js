@@ -78,14 +78,13 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
   };
 
   return (
-    <div>
+    <div className="flex-row">
       {/* {isError ?? <Error />} */}
       {isLoading && <Spinner />}
       {currentShoe ? (
         <div className="shoe-card">
           <form onSubmit={handleSubmit}>
             <h2>{currentShoe.model}</h2>
-            <img src={`${currentShoe.img}`} alt="thumbnail" />
             <p>
               <span className="bold"> model: </span>
               {currentShoe.brand}
@@ -102,6 +101,7 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
               <span className="bold"> color: </span>
               {currentShoe.color}
             </p>
+            <img src={`${currentShoe.img}`} alt="thumbnail" />
             <p>
               <span className="bold"> price: </span>
               <input

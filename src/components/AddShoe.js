@@ -12,7 +12,7 @@ function AddShoe({ dispatchShoes, isLoading, setIsLoading }) {
     const formData = new FormData(e.target);
     const newShoe = Object.fromEntries(formData);
     if (isFormValid(newShoe)) {
-      console.log("valid");
+      // console.log("valid");
       postNewShoe(newShoe);
       // console.log(newShoe);
       e.target.reset();
