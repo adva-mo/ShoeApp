@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useParams, redirect } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getShoeById } from "../utils/utils";
 import axios from "axios";
 import Spinner from "./Spinner/Spinner";
@@ -69,7 +69,6 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
         playload: { price: memberData.price, id: id },
       });
       setIsLoading((prev) => !prev);
-      console.log("shoe updated");
     } catch (e) {
       setIsLoading((prev) => !prev);
       console.log(e);

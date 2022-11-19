@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-// import Spinner from "./Spinner/Spinner";
 import { isFormValid } from "../utils/utils.js";
 import "./AddShoe.css";
 
@@ -8,8 +7,7 @@ function AddShoe({ dispatchShoes, setIsLoading, shoes }) {
   const [posted, setPosted] = useState(false);
   const [isformValid, setIsformValid] = useState(true);
 
-  const lastIDr = Number(shoes[shoes.length - 1].id);
-  console.log(lastIDr); //string
+  const lastIDregistered = Number(shoes[shoes.length - 1].id);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -60,7 +58,7 @@ function AddShoe({ dispatchShoes, setIsLoading, shoes }) {
             <p>id:</p>
             <input
               contentEditable={false}
-              defaultValue={lastIDr + 1}
+              defaultValue={lastIDregistered + 1}
               name="id"
               type="text"
               className={!isformValid ? "not-valid" : ""}
