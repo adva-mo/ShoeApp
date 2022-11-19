@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, redirect } from "react-router-dom";
 import { getShoeById } from "../utils/utils";
 import axios from "axios";
 import Spinner from "./Spinner/Spinner";
@@ -39,7 +39,6 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
     } catch (e) {
       setIsLoading((prev) => !prev);
       console.log(e);
-      // setIsError(true);
     }
   }
 
@@ -105,7 +104,7 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
             <p>
               <span className="bold"> price: </span>
               <input
-                className={!isPriceValid && "not-valid"}
+                className={!isPriceValid ? "not-valid" : ""}
                 name="price"
                 type="text"
                 readOnly={!isEditable}

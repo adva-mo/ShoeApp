@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useReducer, useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { shoesReducer } from "./utils/reducer";
 
@@ -42,6 +42,7 @@ function App() {
                 dispatchShoes={dispatchShoes}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
+                shoes={shoes}
               />
             }
           />

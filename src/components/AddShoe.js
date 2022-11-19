@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Spinner from "./Spinner/Spinner";
+// import Spinner from "./Spinner/Spinner";
 import { isFormValid } from "../utils/utils.js";
 import "./AddShoe.css";
 
-function AddShoe({ dispatchShoes, isLoading, setIsLoading }) {
+function AddShoe({ dispatchShoes, setIsLoading, shoes }) {
   const [posted, setPosted] = useState(false);
+  const [isformValid, setIsformValid] = useState(true);
+
+  const lastIDr = Number(shoes[shoes.length - 1].id);
+  console.log(lastIDr); //string
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -13,10 +17,12 @@ function AddShoe({ dispatchShoes, isLoading, setIsLoading }) {
     const newShoe = Object.fromEntries(formData);
     if (isFormValid(newShoe)) {
       // console.log("valid");
+      setIsformValid(true);
       postNewShoe(newShoe);
       // console.log(newShoe);
       e.target.reset();
     } else {
+      setIsformValid(false);
       console.log("not valid");
     }
   };
@@ -44,52 +50,75 @@ function AddShoe({ dispatchShoes, isLoading, setIsLoading }) {
   return (
     <div className="flex-column add-shoe-container">
       <form onSubmit={submitHandler}>
+        {posted && (
+          <p style={{ textAlign: "center", marginTop: "0.3rem" }}>
+            Shoe added to the stock!
+          </p>
+        )}
         <div className="form-container">
           <div>
-            <p>
-              id <span className="requiered">*</span>
-            </p>
-            <input name="id" type="number"></input>
+            <p>id:</p>
+            <input
+              contentEditable={false}
+              defaultValue={lastIDr + 1}
+              name="id"
+              type="text"
+              className={!isformValid ? "not-valid" : ""}
+            ></input>
           </div>
           <div>
             <p>
               model <span className="requiered">*</span>
             </p>
-            <input name="model" type="text"></input>
+            <input
+              name="model"
+              type="text"
+              className={!isformValid ? "not-valid" : ""}
+            ></input>
           </div>
           <div>
             <p>
               link to picture <span className="requiered">*</span>
             </p>
-            <input name="img" type="text"></input>
+            <input
+              name="img"
+              type="text"
+              className={!isformValid ? "not-valid" : ""}
+            ></input>
           </div>
           <div>
             <p>
               brand <span className="requiered">*</span>
             </p>
-            <input name="brand" type="text"></input>
+            <input
+              name="brand"
+              type="text"
+              className={!isformValid ? "not-valid" : ""}
+            ></input>
           </div>
           <div>
             <p>
               color <span className="requiered">*</span>
             </p>
-            <input name="color" type="text"></input>
+            <input
+              name="color"
+              type="text"
+              className={!isformValid ? "not-valid" : ""}
+            ></input>
           </div>
           <div>
             <p>
               price <span className="requiered">*</span>
             </p>
-            <input name="price" type="number"></input>
+            <input
+              name="price"
+              type="number"
+              className={!isformValid ? "not-valid" : ""}
+            ></input>
           </div>
           <button>add</button>
-          {posted && (
-            <p style={{ textAlign: "center", marginTop: "0.3rem" }}>
-              Shoe added to the stock!
-            </p>
-          )}
         </div>
       </form>
-      {/* {isLoading && <Spinner />} */}
     </div>
   );
 }

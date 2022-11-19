@@ -2,8 +2,6 @@
   background-color: var(--white);
   height: 4rem;
   padding: 1rem;
-  border: 2px solid var(--blue);
-  border-width: 0 0 2px 0;
 }
 .nav-bar a {
   color: var(--pink);

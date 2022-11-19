@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Spinner from "../components/Spinner/Spinner";
 import axios from "axios";
 import { getGreeting, getTime } from "../utils/utils.js";
@@ -7,7 +7,8 @@ import "./HomePage.css";
 function HomePage({ dispatchShoes, shoes, isLoading, setIsLoading }) {
   useEffect(() => {
     if (!shoes) getShoes();
-  }, []);
+    // eslint-disable-next-line
+  }, [shoes]);
 
   const getShoes = async () => {
     try {
@@ -31,10 +32,10 @@ function HomePage({ dispatchShoes, shoes, isLoading, setIsLoading }) {
       ) : (
         <div className="flex-row home-notes-container">
           <div className="home-page-greeting">
-            <p>
+            <div>
               <h1>{getGreeting()},</h1>
               <h1>managar!</h1>
-            </p>
+            </div>
             <h3>the time: {getTime()}</h3>
           </div>
           <div className="stock-count">
