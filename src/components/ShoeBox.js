@@ -54,12 +54,8 @@ function ShoeBox({
     <form onSubmit={handleSubmit}>
       <h2>{currentShoe.model}</h2>
       <p>
-        <span className="bold"> model: </span>
-        {currentShoe.brand}
-      </p>
-      <p>
         <span className="bold"> brand: </span>
-        {currentShoe.model}
+        {currentShoe.brand}
       </p>
       <p>
         <span className="bold"> id: </span>
@@ -69,7 +65,7 @@ function ShoeBox({
         <span className="bold"> color: </span>
         {currentShoe.color}
       </p>
-      <img src={`${currentShoe.img}`} alt="thumbnail" />
+      <img src={`${currentShoe.img}`} alt="SHOE" />
       <p>
         <span className="bold"> price: </span>
         <input

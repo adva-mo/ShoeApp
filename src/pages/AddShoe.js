@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { isFormValid } from "../utils/utils.js";
+import { isFormValid, getEmptyFields } from "../utils/utils.js";
 import "./AddShoe.css";
 
 function AddShoe({ dispatchShoes, setIsLoading, shoes }) {
   const [posted, setPosted] = useState(false);
+  // eslint-disable-next-line
   const [isformValid, setIsformValid] = useState(true);
+  const [notValids, setnotValids] = useState([]);
 
   const lastIDregistered = shoes && Number(shoes[shoes.length - 1].id);
   const navigate = useNavigate();
@@ -24,6 +26,8 @@ function AddShoe({ dispatchShoes, setIsLoading, shoes }) {
       postNewShoe(newShoe);
       e.target.reset();
     } else {
+      setnotValids(getEmptyFields(newShoe));
+      console.log(notValids);
       setIsformValid(false);
     }
   };
@@ -51,7 +55,7 @@ function AddShoe({ dispatchShoes, setIsLoading, shoes }) {
   };
 
   return (
-    <div className="flex-column add-shoe-container">
+    <>
       <form onSubmit={submitHandler}>
         {posted && (
           <p style={{ textAlign: "center", marginTop: "0.3rem" }}>
@@ -67,7 +71,6 @@ function AddShoe({ dispatchShoes, setIsLoading, shoes }) {
                 defaultValue={lastIDregistered + 1}
                 name="id"
                 type="text"
-                className={!isformValid ? "not-valid" : ""}
               ></input>
             </div>
             <div>
@@ -77,7 +80,7 @@ function AddShoe({ dispatchShoes, setIsLoading, shoes }) {
               <input
                 name="model"
                 type="text"
-                className={!isformValid ? "not-valid" : ""}
+                className={notValids.includes("model") ? "not-valid" : ""}
               ></input>
             </div>
             <div>
@@ -87,7 +90,7 @@ function AddShoe({ dispatchShoes, setIsLoading, shoes }) {
               <input
                 name="img"
                 type="text"
-                className={!isformValid ? "not-valid" : ""}
+                className={notValids.includes("img") ? "not-valid" : ""}
               ></input>
             </div>
             <div>
@@ -97,7 +100,7 @@ function AddShoe({ dispatchShoes, setIsLoading, shoes }) {
               <input
                 name="brand"
                 type="text"
-                className={!isformValid ? "not-valid" : ""}
+                className={notValids.includes("brand") ? "not-valid" : ""}
               ></input>
             </div>
             <div>
@@ -107,7 +110,7 @@ function AddShoe({ dispatchShoes, setIsLoading, shoes }) {
               <input
                 name="color"
                 type="text"
-                className={!isformValid ? "not-valid" : ""}
+                className={notValids.includes("color") ? "not-valid" : ""}
               ></input>
             </div>
             <div>
@@ -117,14 +120,14 @@ function AddShoe({ dispatchShoes, setIsLoading, shoes }) {
               <input
                 name="price"
                 type="number"
-                className={!isformValid ? "not-valid" : ""}
+                className={notValids.includes("price") ? "not-valid" : ""}
               ></input>
             </div>
             <button>add</button>
           </div>
         )}
       </form>
-    </div>
+    </>
   );
 }
 

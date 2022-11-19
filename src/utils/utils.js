@@ -17,3 +17,11 @@ export const isFormValid = (newShoe) => {
   const values = Object.values(newShoe);
   return values.every((val) => !!val);
 };
+
+export const getEmptyFields = (newShoe) => {
+  const res = [];
+  for (let key in newShoe) {
+    newShoe[key] === "" && res.push(key);
+  }
+  return res;
+};
