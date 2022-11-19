@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Spinner from "./Spinner/Spinner";
 import { isFormValid } from "../utils/utils.js";
+import "./AddShoe.css";
 
 function AddShoe({ dispatchShoes, isLoading, setIsLoading }) {
   const [posted, setPosted] = useState(false);
@@ -41,44 +42,54 @@ function AddShoe({ dispatchShoes, isLoading, setIsLoading }) {
   };
 
   return (
-    <div>
-      AddShoe
-      <div className="flex-column">
-        <form onSubmit={submitHandler}>
-          <fieldset className="">
-            <legend>Add new shoe</legend>
-            <div>
-              model:
-              <input name="model" type="text"></input>
-            </div>
-            <div>
-              link to picture:
-              <input name="img" type="text"></input>
-            </div>
-            <div>
-              brand:
-              <input name="brand" type="text"></input>
-            </div>
-            <div>
-              color:
-              <input name="color" type="text"></input>
-            </div>
-            <div>
-              price:
-              <input name="price" type="number"></input>
-            </div>
-
-            <button>add</button>
-          </fieldset>
-        </form>
-        {isLoading && <Spinner />}
-        {posted && (
-          // setTimeout(() => {
-          //   <p>added successfully</p>;
-          // }, 2000)
-          <p>SUCCESS</p>
-        )}
-      </div>
+    <div className="flex-column add-shoe-container">
+      <form onSubmit={submitHandler}>
+        <div className="form-container">
+          <div>
+            <p>
+              id <span className="requiered">*</span>
+            </p>
+            <input name="id" type="number"></input>
+          </div>
+          <div>
+            <p>
+              model <span className="requiered">*</span>
+            </p>
+            <input name="model" type="text"></input>
+          </div>
+          <div>
+            <p>
+              link to picture <span className="requiered">*</span>
+            </p>
+            <input name="img" type="text"></input>
+          </div>
+          <div>
+            <p>
+              brand <span className="requiered">*</span>
+            </p>
+            <input name="brand" type="text"></input>
+          </div>
+          <div>
+            <p>
+              color <span className="requiered">*</span>
+            </p>
+            <input name="color" type="text"></input>
+          </div>
+          <div>
+            <p>
+              price <span className="requiered">*</span>
+            </p>
+            <input name="price" type="number"></input>
+          </div>
+          <button>add</button>
+          {posted && (
+            <p style={{ textAlign: "center", marginTop: "0.3rem" }}>
+              Shoe added to the stock!
+            </p>
+          )}
+        </div>
+      </form>
+      {isLoading && <Spinner />}
     </div>
   );
 }

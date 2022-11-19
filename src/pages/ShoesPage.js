@@ -2,6 +2,8 @@ import React from "react";
 import ShoePrev from "../components/ShoePrev";
 import { v4 as uuid } from "uuid";
 
+import "./shoesPage.css";
+
 function ShoesPage({ shoes }) {
   return (
     <div>

@@ -17,7 +17,7 @@ function App() {
   return (
     <div>
       <NavBar />
-      <main>
+      <main className="main-box">
         <Routes>
           <Route path="/" element={<Navigate replace to="/HomePage" />} />
           <Route path="/*" element={<Navigate replace to="/HomePage" />} />

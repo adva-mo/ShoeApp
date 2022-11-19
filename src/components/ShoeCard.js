@@ -1,21 +1,24 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { getShoeById, isFormValid } from "../utils/utils";
+import { getShoeById } from "../utils/utils";
 import axios from "axios";
 import Spinner from "./Spinner/Spinner";
+import "./ShoeCard.css";
 
 function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
   const [isEditable, setIsEditable] = useState(false);
   const [currentShoe, setCurrentShoe] = useState(null);
+  const [isPriceValid, setIsPriceValid] = useState(true);
   const newPrice = useRef("");
-  let params = useParams();
+  const params = useParams();
+  console.log(shoes);
 
   useEffect(() => {
     setCurrentShoe(getShoeById(shoes, params.shoeID));
-  }, []);
+  }, [shoes, params.shoeID]);
 
   const handleSubmit = (e) => {
-    e && e.preventDefault();
+    e.preventDefault();
   };
 
   async function handleDelete(id) {
@@ -30,11 +33,10 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
         type: "DELETE-SHOE",
         playload: id,
       });
-      setCurrentShoe((prev) => {
-        return null;
-      });
+      setCurrentShoe((prev) => null);
       setIsLoading((prev) => !prev);
     } catch (e) {
+      setIsLoading((prev) => !prev);
       console.log(e);
     }
   }
@@ -43,9 +45,13 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
     if (isLoading) return;
     e.preventDefault();
     if (isEditable) {
-      if (newPrice.current.value <= 0) return; //user didnt entered price
+      if (newPrice.current.value <= 0) {
+        setIsPriceValid((prev) => false);
+        return;
+      }
       putShoe(params.shoeID, { price: newPrice.current.value });
       setIsEditable((prev) => !prev);
+      setIsPriceValid((prev) => true);
     } else setIsEditable((prev) => !prev);
   };
 
@@ -64,6 +70,7 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
       setIsLoading((prev) => !prev);
       console.log("shoe updated");
     } catch (e) {
+      setIsLoading((prev) => !prev);
       console.log(e);
     }
   };
@@ -72,34 +79,46 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
     <div>
       {isLoading && <Spinner />}
       {currentShoe ? (
-        <div>
-          <form onSubmit={handleSubmit} className="shoe-card">
-            <h3>{currentShoe.model}</h3>
-            <p>brand: {currentShoe.brand}</p>
-            <p>id: {currentShoe.id}</p>
-            <p>color: {currentShoe.color}</p>
+        <div className="shoe-card">
+          <form onSubmit={handleSubmit}>
+            <h2>{currentShoe.model}</h2>
             <img src={`${currentShoe.img}`} alt="thumbnail" />
             <p>
-              price:
+              <span className="bold"> model: </span>
+              {currentShoe.brand}
+            </p>
+            <p>
+              <span className="bold"> brand: </span>
+              {currentShoe.model}
+            </p>
+            <p>
+              <span className="bold"> id: </span>
+              {currentShoe.id}
+            </p>
+            <p>
+              <span className="bold"> color: </span>
+              {currentShoe.color}
+            </p>
+            <p>
+              <span className="bold"> price: </span>
               <input
+                className={!isPriceValid && "not-valid"}
                 name="price"
                 type="text"
                 readOnly={!isEditable}
                 placeholder={currentShoe.price}
                 ref={newPrice}
               />
-              $
+              <span className="bold">$</span>
             </p>
             <button onClick={handleEditMember}>
               {isEditable ? "ok" : "edit"}
             </button>
           </form>
+          <button onClick={() => handleDelete(params.shoeID)}>delete</button>
         </div>
       ) : (
-        <p>shoe deleted</p>
-      )}
-      {currentShoe && (
-        <button onClick={() => handleDelete(params.shoeID)}>delete shoe</button>
+        <p className="user-msg">shoe has been removed from the stock</p>
       )}
     </div>
   );

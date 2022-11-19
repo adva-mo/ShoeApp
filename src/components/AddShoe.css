@@ -1,0 +1,37 @@
+.add-shoe-container {
+  background-color: var(--white);
+  max-width: fit-content;
+  margin: auto;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 5px;
+  color: var(--primary-purple);
+}
+.form-container {
+  padding: 2rem 3rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+.form-container input {
+  border: none;
+  width: 15rem;
+  height: 2.5rem;
+  border-radius: 5px;
+  margin: 0.8rem 0;
+  outline: none;
+}
+.form-container button {
+  border: none;
+  background-color: var(--primary-purple);
+  color: var(--white);
+  padding: 0.5rem 2rem;
+  font-size: xx-large;
+  width: 15rem;
+  border-radius: 5px;
+  font-weight: 600;
+}
+.requiered {
+  color: red;
+  font-size: xx-small;
+  font-weight: 400;
+}
