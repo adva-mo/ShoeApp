@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { isFormValid } from "../utils/utils.js";
 import "./AddShoe.css";
 
@@ -8,20 +9,18 @@ function AddShoe({ dispatchShoes, setIsLoading, shoes }) {
   const [isformValid, setIsformValid] = useState(true);
 
   const lastIDregistered = Number(shoes[shoes.length - 1].id);
+  const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const newShoe = Object.fromEntries(formData);
     if (isFormValid(newShoe)) {
-      // console.log("valid");
       setIsformValid(true);
       postNewShoe(newShoe);
-      // console.log(newShoe);
       e.target.reset();
     } else {
       setIsformValid(false);
-      console.log("not valid");
     }
   };
 
@@ -40,6 +39,9 @@ function AddShoe({ dispatchShoes, setIsLoading, shoes }) {
       });
       setIsLoading((prev) => !prev);
       setPosted((prev) => !prev);
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } catch (e) {
       console.log(e);
     }
