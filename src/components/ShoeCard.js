@@ -3,15 +3,16 @@ import { useParams } from "react-router-dom";
 import { getShoeById } from "../utils/utils";
 import axios from "axios";
 import Spinner from "./Spinner/Spinner";
+import Error from "./Error";
 import "./ShoeCard.css";
 
 function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
   const [isEditable, setIsEditable] = useState(false);
   const [currentShoe, setCurrentShoe] = useState(null);
   const [isPriceValid, setIsPriceValid] = useState(true);
+  // const [isError, setIsError] = useState(false);
   const newPrice = useRef("");
   const params = useParams();
-  console.log(shoes);
 
   useEffect(() => {
     setCurrentShoe(getShoeById(shoes, params.shoeID));
@@ -38,6 +39,7 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
     } catch (e) {
       setIsLoading((prev) => !prev);
       console.log(e);
+      // setIsError(true);
     }
   }
 
@@ -77,6 +79,7 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
 
   return (
     <div>
+      {/* {isError ?? <Error />} */}
       {isLoading && <Spinner />}
       {currentShoe ? (
         <div className="shoe-card">

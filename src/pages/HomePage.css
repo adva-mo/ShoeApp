@@ -1,0 +1,17 @@
+.home-page-greeting,
+.stock-count {
+  /* display: inline-block; */
+  margin: 0 3rem;
+}
+.stock-count {
+  text-align: center;
+  font-size: x-large;
+}
+.home-notes-container {
+  margin-top: 3rem;
+}
+.shoes-count {
+  color: var(--pink);
+  font-size: 6rem;
+  font-weight: 500;
+}

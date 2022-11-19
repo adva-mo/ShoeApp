@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Spinner from "../components/Spinner/Spinner";
 import axios from "axios";
 import { getGreeting, getTime } from "../utils/utils.js";
+import "./HomePage.css";
 
 function HomePage({ dispatchShoes, shoes, isLoading, setIsLoading }) {
   useEffect(() => {
@@ -28,10 +29,23 @@ function HomePage({ dispatchShoes, shoes, isLoading, setIsLoading }) {
       {isLoading ? (
         <Spinner />
       ) : (
-        <div>
-          <h1>{getGreeting()}, mananger!</h1>
-          <h3>the time: {getTime()}</h3>
-          <p>you have {shoes.length} shoes in stock!</p>
+        <div className="flex-row home-notes-container">
+          <div className="home-page-greeting">
+            <p>
+              <h1>{getGreeting()},</h1>
+              <h1>managar!</h1>
+            </p>
+            <h3>the time: {getTime()}</h3>
+          </div>
+          <div className="stock-count">
+            <p>
+              you have <br></br>
+              <span className="shoes-count">
+                {shoes.length} <br></br>
+              </span>
+              shoes in stock!
+            </p>
+          </div>
         </div>
       )}
     </>

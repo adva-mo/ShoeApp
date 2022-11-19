@@ -9,6 +9,7 @@ import AddShoe from "./components/AddShoe";
 import ShoeCard from "./components/ShoeCard";
 
 import "./App.css";
+import Spinner from "./components/Spinner/Spinner";
 
 function App() {
   const [shoes, dispatchShoes] = useReducer(shoesReducer, null);
@@ -18,6 +19,7 @@ function App() {
     <div>
       <NavBar />
       <main className="main-box">
+        {isLoading && <Spinner />}
         <Routes>
           <Route path="/" element={<Navigate replace to="/HomePage" />} />
           <Route path="/*" element={<Navigate replace to="/HomePage" />} />

@@ -89,7 +89,7 @@ function AddShoe({ dispatchShoes, isLoading, setIsLoading }) {
           )}
         </div>
       </form>
-      {isLoading && <Spinner />}
+      {/* {isLoading && <Spinner />} */}
     </div>
   );
 }
