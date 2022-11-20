@@ -1,5 +1,5 @@
 import React, { useReducer, useState } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { shoesReducer } from "./utils/reducer";
 
 import HomePage from "./pages/HomePage";
@@ -15,9 +15,6 @@ function App() {
   const [shoes, dispatchShoes] = useReducer(shoesReducer, null);
   const [isLoading, setIsLoading] = useState(!shoes);
 
-  {
-    /* <Route path="*" element={<Navigate replace to="/" />} /> */
-  }
   return (
     <div>
       <NavBar />
