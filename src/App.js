@@ -21,11 +21,10 @@ function App() {
       <main className="main-box">
         {isLoading && <Spinner />}
         <Routes>
-          <Route path="/" element={<Navigate replace to="/HomePage" />} />
-          <Route path="*" element={<Navigate replace to="/HomePage" />} />
+          <Route path="*" element={<Navigate replace to="/" />} />
           <Route path="/Shoespage" element={<ShoesPage shoes={shoes} />} />
           <Route
-            path="/HomePage"
+            path="/"
             element={
               <HomePage
                 dispatchShoes={dispatchShoes}

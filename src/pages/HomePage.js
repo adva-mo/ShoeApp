@@ -33,8 +33,8 @@ function HomePage({ dispatchShoes, shoes, isLoading, setIsLoading }) {
         <div className="flex-row home-notes-container">
           <div className="home-page-greeting">
             <div>
-              {/* <h1>{getGreeting()},</h1> */}
-              <h1>Good Morning,</h1>
+              <h1>{getGreeting()},</h1>
+              {/* <h1>Good Morning,</h1> */}
               <h1>managar!</h1>
             </div>
             <h3>the time: {getTime()}</h3>

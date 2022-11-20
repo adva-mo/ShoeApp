@@ -9,7 +9,7 @@ function NavBar() {
         <li>
           <NavLink
             className={(navData) => (navData.isActive ? "active" : "")}
-            to={"/homepage"}
+            to={"/"}
           >
             Home
           </NavLink>
