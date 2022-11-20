@@ -22,6 +22,7 @@ function App() {
         {isLoading && <Spinner />}
         <Routes>
           <Route path="/Shoespage" element={<ShoesPage shoes={shoes} />} />
+          <Route path="/HomePage" element={<ShoesPage shoes={shoes} />} />
           <Route
             path="/"
             element={
