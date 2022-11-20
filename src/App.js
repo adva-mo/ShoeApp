@@ -15,13 +15,15 @@ function App() {
   const [shoes, dispatchShoes] = useReducer(shoesReducer, null);
   const [isLoading, setIsLoading] = useState(!shoes);
 
+  {
+    /* <Route path="*" element={<Navigate replace to="/" />} /> */
+  }
   return (
     <div>
       <NavBar />
       <main className="main-box">
         {isLoading && <Spinner />}
         <Routes>
-          {/* <Route path="*" element={<Navigate replace to="/" />} /> */}
           <Route path="/Shoespage" element={<ShoesPage shoes={shoes} />} />
           <Route
             path="/"
