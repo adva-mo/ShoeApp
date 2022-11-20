@@ -4,8 +4,9 @@ export const getShoeById = (shoes, shoeID) => {
 
 export const getGreeting = () => {
   let today = new Date().toLocaleTimeString().split(" ");
-  if (today[1] === "AM") return "Good morning";
-  else if (today[1] === "PM") return "Good after noon";
+  // if (today[1] === "AM")
+  return "Good morning";
+  // else if (today[1] === "PM") return "Good after noon";
 };
 
 export const getTime = () => {
