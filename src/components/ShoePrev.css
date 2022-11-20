@@ -4,6 +4,7 @@
   padding: 0.5rem;
   margin: 0.5rem;
   line-height: 2rem;
+  text-align: center;
 }
 .shoe-prev a {
   color: var(--blue);
@@ -11,6 +12,7 @@
 }
 .shoe-prev img {
   margin-top: 1rem;
+  width: 4rem;
 }
 .bold {
   font-weight: 500;

@@ -41,12 +41,11 @@ function ShoeBox({
       if (!response.data) throw new Error("errrrror");
       await dispatchShoes({
         type: "EDIT-SHOE",
-        playload: { price: memberData.price, id: id },
+        playload: { price: memberData.price, id: Number(id) },
       });
       setIsLoading((prev) => !prev);
     } catch (e) {
       setIsLoading((prev) => !prev);
-      console.log(e);
     }
   };
 

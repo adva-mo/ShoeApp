@@ -37,9 +37,6 @@ function Delete({
   return (
     <>
       <button onClick={() => handleDelete(shoeID)}>Delete</button>
-      {/* {!currentShoe && (
-        <p className="user-msg">shoe has been removed from the stock</p>
-      )} */}
     </>
   );
 }

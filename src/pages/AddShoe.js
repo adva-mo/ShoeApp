@@ -9,8 +9,10 @@ function AddShoe({ dispatchShoes, setIsLoading, shoes }) {
   // eslint-disable-next-line
   const [isformValid, setIsformValid] = useState(true);
   const [notValids, setnotValids] = useState([]);
-
-  const lastIDregistered = shoes && Number(shoes[shoes.length - 1].id);
+  let lastIDregistered;
+  if (shoes) {
+    lastIDregistered = shoes && Number(shoes[shoes.length - 1].id);
+  }
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,7 +29,6 @@ function AddShoe({ dispatchShoes, setIsLoading, shoes }) {
       e.target.reset();
     } else {
       setnotValids(getEmptyFields(newShoe));
-      console.log(notValids);
       setIsformValid(false);
     }
   };
@@ -58,17 +59,17 @@ function AddShoe({ dispatchShoes, setIsLoading, shoes }) {
     <>
       <form onSubmit={submitHandler}>
         {posted && (
-          <p style={{ textAlign: "center", marginTop: "0.3rem" }}>
+          <div style={{ marginTop: "6rem" }} className="form-container">
             Shoe added to the stock!
-          </p>
+          </div>
         )}
         {!posted && (
           <div className="form-container">
             <div>
               <p>id:</p>
               <input
-                contentEditable={false}
-                defaultValue={lastIDregistered + 1}
+                readOnly={true}
+                defaultValue={lastIDregistered ? lastIDregistered + 1 : ""}
                 name="id"
                 type="text"
               ></input>

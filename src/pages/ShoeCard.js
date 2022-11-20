@@ -5,7 +5,6 @@ import Spinner from "../components/Spinner/Spinner";
 import Delete from "../components/Delete";
 import ShoeBox from "../components/ShoeBox";
 import "./ShoeCard.css";
-
 function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
   const [currentShoe, setCurrentShoe] = useState(null);
   const params = useParams();
@@ -19,14 +18,13 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
   return (
     <>
       {isLoading && <Spinner />}
-      {/* </> */}
       <div className="flex-row">
         {currentShoe ? (
           <div className="shoe-card">
             <ShoeBox
               currentShoe={currentShoe}
               isLoading={isLoading}
-              shoeId={params.shoesID}
+              shoeId={params.shoeID}
               setIsLoading={setIsLoading}
               dispatchShoes={dispatchShoes}
             />
@@ -40,7 +38,9 @@ function ShoeCard({ shoes, dispatchShoes, setIsLoading, isLoading }) {
             />
           </div>
         ) : (
-          <div className="shoe-card">Shoe removed from the stock!</div>
+          <div style={{ marginTop: "6rem" }} className="shoe-card">
+            Shoe removed from the stock!
+          </div>
         )}
       </div>
     </>
